@@ -47,59 +47,8 @@
                     Trends <span>Men's wear</span>
                 </h1>
             </div>
-            <div class="card">
-                <div class="crd">
-                    <img src="menshirt.webp" alt="">
-                    <div class="crdtext">
-                        <h2>
-                            Cotton trending shirt
-                        </h2>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i><br>
-                        <button>
-                            Add to cart
-                        </button>
-                    </div>
-                </div>
-                
-                    <div class="crd">
-                        <img src="coolmen.webp" alt="">
-                        <div class="crdtext">
-                            <h2>
-                                Cotton trending shirt
-                            </h2>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i><br>
-                            <button>
-                                Add to cart
-                            </button>
-                        </div>
-                     
-                    </div>
-                    
-                        <div class="crd">
-                            <img src="formalmen.jpg" alt="">
-                            <div class="crdtext">
-                                <h2>
-                                    Cotton trending shirt
-                                </h2>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star-half-stroke"></i><br>
-                                <button>
-                                    Add to cart
-                                </button>
-                            </div>
-                            
-                        </div>
+            <div class="card fragCard">
+              
             </div>
         </div>
         <div class="trend">
@@ -226,6 +175,50 @@
 
     </div>
     <script src="web.js"></script>
+    <script>
+        console.log("Started");
+
+        function printData(){
+            console.log("Middle")
+        }
+        printData()
+        fetch('https://dummyjson.com/products')
+                .then(res => res.json())
+                .then(data=>{
+                    console.log(data)
+                const FragData=    data.products.filter(e=> e.category=="fragrances");
+                console.log(FragData)
+                FragData.forEach((element,i) => {
+                    if(i<3){
+                    document.querySelector(".fragCard").innerHTML += `
+                    <div class="crd">
+                    <img src="${element.thumbnail}" alt="">
+                    <div class="crdtext">
+                        <h2>
+                        ${element.title}
+                        </h2>
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <i class="fa-solid fa-star" aria-hidden="true"></i>
+                        <i class="fa-solid fa-star-half-stroke" aria-hidden="true"></i><br>
+                        <button>
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+                    `
+                    }
+                   
+                });
+
+                })
+                .catch(err=>{
+                    console.error(err)
+                })
+
+        console.log("Ended")
+    </script>
     
 </body>
 </html>
